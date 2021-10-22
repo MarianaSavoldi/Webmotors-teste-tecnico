@@ -25,7 +25,6 @@ const updateProduct = async (req, res) => {
       return res.status(StatusCodes.NOT_FOUND).send('Produto não encontrado')
     }
     const product = JSON.stringify(updatedProd);
-    console.log('--------Olha o produto aqui:', product);
     return res.status(StatusCodes.OK).send(`Produto atualizado com sucesso! \n Produto: ${product}`)
   } catch (error) {
     console.log(error);

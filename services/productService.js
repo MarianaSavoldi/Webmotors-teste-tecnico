@@ -4,16 +4,22 @@ const createProduct = async (product) => {
   return teste_webmotors.create(product);
 };
 
-const updateProduct = async (idParam, product) => {
-  const productId = await teste_webmotors.findOne({ where: { id: idParam } });
+const updateProduct = async (idParam, { marca, modelo, versao, ano, quilometragem, observacao }) => {
+  const productId = await teste_webmotors.findByPk(idParam);
   if (!productId) {
     return 'Not found!';
   }
   const { id } = productId.dataValues;
-  console.log('--------Esse é o productId:', productId.dataValues);
-  console.log('--------Esse é o id:', id);
-  const update = await teste_webmotors.update({ where: { id }, ...product });
-  console.log('--------Atualizou o produto:', update);
+  await teste_webmotors.update(
+    { marca, modelo, versao, ano, quilometragem, observacao },
+    { where: { id } }
+  );
+  const updatedProd = await teste_webmotors.findByPk(idParam);
+  const { dataValues } = updatedProd
+  if (!dataValues) {
+    return 'Not found!';
+  }
+  return dataValues;
 };
 
 module.exports = { 
