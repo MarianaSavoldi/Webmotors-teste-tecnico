@@ -16,4 +16,23 @@ const createProduct = async (req, res) => {
   }
 };
 
-module.exports = { createProduct };
+const updateProduct = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { marca, modelo, versao, ano, quilometragem, observacao } = req.body;
+    const updatedProd = await service.updateProduct(id, { marca, modelo, versao, ano, quilometragem, observacao });
+    if (!updatedProd) {
+      return res.status(StatusCodes.NOT_FOUND).send('Produto não encontrado')
+    }
+    const product = JSON.stringify(updatedProd);
+    return res.status(StatusCodes.OK).send(`Produto atualizado com sucesso! \n Produto: ${product}`)
+  } catch (error) {
+    console.log(error);
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send('Oops... Algo deu errado :(');
+  }
+}
+
+module.exports = { 
+  createProduct,
+  updateProduct
+};
