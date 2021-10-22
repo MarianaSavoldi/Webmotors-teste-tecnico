@@ -30,9 +30,21 @@ const updateProduct = async (req, res) => {
     console.log(error);
     return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send('Oops... Algo deu errado :(');
   }
+};
+
+const getAllProducts = async (_req, res) => {
+  try {
+    const getAll = await service.getAllProducts();
+    const products = JSON.stringify(getAll, null, '\t');
+    return res.status(StatusCodes.OK).send(`Lista de produtos: ${products}`);
+  } catch (error) {
+    console.log(error);
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send('Oops... Algo deu errado :(');
+  }
 }
 
 module.exports = { 
   createProduct,
-  updateProduct
+  updateProduct,
+  getAllProducts,
 };
