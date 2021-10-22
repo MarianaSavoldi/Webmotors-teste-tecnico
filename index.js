@@ -14,8 +14,12 @@ const app = express();
 
 app.use(express.json());
 
+// Criar um novo produto
 app.post('/produtos', validMarca, validModelo, validVersao,
 validAno, validKm, validObs, controller.createProduct);
+
+// Atualizar um produto
+app.put('/produtos/:id', controller.updateProduct);
 
 app.get('/', (_req, res) => {
   res.send('Bem-vindo(a) à Webmotors! \n Para acessar nossos produtos digite "/produtos" ao final da sua URL')
