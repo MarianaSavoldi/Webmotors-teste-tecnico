@@ -5,6 +5,11 @@ O código foi todo feito e editado pelo Visual Studio Code (VS Code), nele utili
 
 Espero que gostem do código :)
 
+Para um bom funcionamento do projeto não esqueça de instalar as dependências usando o comando:
+```
+npm install
+```
+
 ## Tecnologias utilizadas:
 <div style="display: inline_block">
   <img align="center" alt="Mari-Js" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-plain.svg">
