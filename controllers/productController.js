@@ -55,6 +55,17 @@ const getProductById = async (req, res) => {
   } catch (error) {
     
   }
+};
+
+const removeProduct = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await service.removeProduct({ id });
+    return res.status(StatusCodes.OK).send('Produto deletado com sucesso!')
+  } catch (error) {
+    console.log(error);
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send('Oops... Algo deu errado :(');
+  }
 }
 
 module.exports = { 
@@ -62,4 +73,5 @@ module.exports = {
   updateProduct,
   getAllProducts,
   getProductById,
+  removeProduct,
 };

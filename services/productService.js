@@ -34,9 +34,15 @@ const getById = async ({ id }) => {
   return get;
 };
 
+const removeProduct = async ({ id }) => {
+  await teste_webmotors.destroy({ where: { id } });
+  return null;
+};
+
 module.exports = { 
   createProduct,
   updateProduct,
   getAllProducts,
   getById,
+  removeProduct,
 };
