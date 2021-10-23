@@ -21,6 +21,12 @@ validAno, validKm, validObs, controller.createProduct);
 // Atualizar um produto
 app.put('/produtos/:id', controller.updateProduct);
 
+// Consultar todos os produtos
+app.get('/produtos', controller.getAllProducts);
+
+//Consultar um único produto
+app.get('/produtos/:id', controller.getProductById);
+
 app.get('/', (_req, res) => {
   res.send('Bem-vindo(a) à Webmotors! \n Para acessar nossos produtos digite "/produtos" ao final da sua URL')
 })

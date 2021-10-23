@@ -22,7 +22,21 @@ const updateProduct = async (idParam, { marca, modelo, versao, ano, quilometrage
   return dataValues;
 };
 
+const getAllProducts = async () => {
+  return teste_webmotors.findAll();
+};
+
+const getById = async ({ id }) => {
+  const get = await teste_webmotors.findByPk(id);
+  if (!get) {
+    return 'Not found!';
+  }
+  return get;
+};
+
 module.exports = { 
   createProduct,
   updateProduct,
+  getAllProducts,
+  getById,
 };

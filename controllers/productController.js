@@ -30,9 +30,36 @@ const updateProduct = async (req, res) => {
     console.log(error);
     return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send('Oops... Algo deu errado :(');
   }
+};
+
+const getAllProducts = async (_req, res) => {
+  try {
+    const getAll = await service.getAllProducts();
+    const products = JSON.stringify(getAll, null, '\t');
+    return res.status(StatusCodes.OK).send(`Lista de produtos: ${products}`);
+  } catch (error) {
+    console.log(error);
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send('Oops... Algo deu errado :(');
+  }
+};
+
+const getProductById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const getOne = await service.getById({ id });
+    if (getOne === 'Not found!') {
+      return res.status(StatusCodes.NOT_FOUND).send('Produto não encontrado');
+    }
+    const product = JSON.stringify(getOne, null, '\t');
+    return res.status(StatusCodes.OK).send(product);
+  } catch (error) {
+    
+  }
 }
 
 module.exports = { 
   createProduct,
-  updateProduct
+  updateProduct,
+  getAllProducts,
+  getProductById,
 };
